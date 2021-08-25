@@ -46,6 +46,9 @@ export function useDropzoneInteractJS(
                     x,
                     y
                 })
+                let draggableElement = event.target;
+                draggableElement.textContent = `dragmove: x:${x} y:${y}`;
+
             })
             .on('resizemove', event => {
                 width = event.rect.width
@@ -58,14 +61,15 @@ export function useDropzoneInteractJS(
                     width,
                     height
                 })
+                let draggableElement = event.target;
+                draggableElement.textContent = `dragmove: w:${width} h:${height}`;
+
             })
 
     }
 
     useEffect(() => {
-
         enable()
-        
     }, [isEnabled])
 
     return {

@@ -3,7 +3,7 @@ import { useDropzoneInteractJS } from "./dragzoneHooks";
 import * as React from "react"
 
 const App: React.FC = () => {
-    const interact = useDropzoneInteractJS()
+    const interact = useDropzoneInteractJS({x: 100, y: 100, width: 300, height: 300})
     return (
         <div>
             <div className="dropzone" 
@@ -11,8 +11,6 @@ const App: React.FC = () => {
                 ref={interact.ref}
                 style={{
                     ...interact.style,
-                    border: "2px solid #0489B1",
-                    backgroundColor: "#A9D0F5"
                 }}
             >
                 #outer-dropzone
