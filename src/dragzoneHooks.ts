@@ -30,8 +30,25 @@ export function useDropzoneInteractJS(
     const enable = () => {
         interact((interactRef.current as unknown) as HTMLElement)
             .draggable({
-                inertia: false
+                modifiers: [
+                interact.modifiers.snap({
+                    targets: [
+                    interact.snappers.grid({ x: 30, y: 30 })
+                    ],
+                    range: Infinity,
+                    relativePoints: [ { x: 0, y: 0 } ]
+                }),
+                // interact.modifiers.restrict({
+                //     restriction: element.parentNode,
+                //     elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
+                //     endOnly: true
+                // })
+                ],
+                inertia: true
             })
+            // .draggable({
+            //     inertia: false
+            // })
             .resizable({
                 edges: {left: true, right: true, bottom: true, top: true},
                 preserveAspectRatio: false,
@@ -69,6 +86,8 @@ export function useDropzoneInteractJS(
     }
 
     useEffect(() => {
+        // enable it will be onshort
+        // TODO: let's test it
         enable()
     }, [isEnabled])
 
