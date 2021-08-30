@@ -3,17 +3,27 @@ import { useDropzoneInteractJS } from "./dragzoneHooks";
 import * as React from "react"
 
 const App: React.FC = () => {
-    const interact = useDropzoneInteractJS({x: 120, y: 110, width: 120, height: 120})
+    const interact1 = useDropzoneInteractJS({x: 120, y: 120, width: 120, height: 120})
+    const interact2 = useDropzoneInteractJS({x: 320, y: 120, width: 120, height: 120})
     return (
-        <div className="gridX50Y50">
+        <div className="grid-bg-x50-y50">
             <div className="dropzone" 
-                id="outer-dropzone"
-                ref={interact.ref}
+                id="outer-dropzone-1"
+                ref={interact1.ref}
                 style={{
-                    ...interact.style,
+                    ...interact1.style,
                 }}
             >
-                #MyDesk
+                #MyDesk-1
+            </div>
+            <div className="dropzone" 
+                id="outer-dropzone-2"
+                ref={interact2.ref}
+                style={{
+                    ...interact2.style,
+                }}
+            >
+                #MyDesk-2
             </div>
         </div>
     );
