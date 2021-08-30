@@ -50,27 +50,33 @@ export function useDropzoneInteractJS(
                 edges: {left: true, right: true, bottom: true, top: true},
                 preserveAspectRatio: false,
                 inertia: false,
-                // modifiers: [
-                //     interact.modifiers.snap({
-                //         targets: [
-                //             interact.snappers.grid({ x: 40, y: 40 })
-                //         ],
-                //         range: Infinity,
-                //         relativePoints: [ { x: 0, y: 0 } ]
-                //     }),
-                // ],
+                modifiers: [
+                    interact.modifiers.snap({
+                        targets: [
+                            interact.snappers.grid({ x: 40, y: 40 })
+                        ],
+                        range: Infinity,
+                        relativePoints: [ { x: 0, y: 0 } ]
+                    }),
+                ],
+            })
+            .on('', evnet => {
+                
             })
             .on('dragmove', event => {
                 x += event.dx
                 y += event.dy
+                let draggableElement = event.target;
+
+                // draggableElement.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+
                 setPosition({
                     width,
                     height,
                     x,
                     y
                 })
-                let draggableElement = event.target;
-                draggableElement.textContent = `dragmove: x:${x} y:${y+10}`;
+                draggableElement.textContent = `dragmove: x:${x} y:${y}`;
 
             })
             .on('resizemove', event => {
@@ -85,7 +91,7 @@ export function useDropzoneInteractJS(
                     height
                 })
                 let draggableElement = event.target;
-                draggableElement.textContent = `dragmove: w:${width} h:${height}`;
+                draggableElement.textContent = `resizemove: w:${width} h:${height}`;
 
             })
 
@@ -100,7 +106,7 @@ export function useDropzoneInteractJS(
     return {
         ref: interactRef,
         style: {
-            transform: `translate3D(${_postion.x}px, ${_postion.y}px, 0)`,
+            transform: `translate(${_postion.x}px, ${_postion.y}px)`,
             width: _postion.width + 'px',
             height: _postion.height + 'px',
             position: 'absolute' as CSSProperties['position'],

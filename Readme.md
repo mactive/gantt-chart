@@ -1,3 +1,7 @@
+## TODO
+- [ ] 初始化的时候y轴10像素的偏移
+- [ ] size大小不能到慢则120 * 120 的设定
+
 ## make gantt chartable
 
 inspried by https://dribbble.com/shots/12335429-Gantt-Chart-UI-UX-design
