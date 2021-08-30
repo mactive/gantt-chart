@@ -6,8 +6,8 @@ type Partial<T> = {
 }
 
 const initPosition = {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     x: 0,
     y: 0,
 }
@@ -31,28 +31,34 @@ export function useDropzoneInteractJS(
         interact((interactRef.current as unknown) as HTMLElement)
             .draggable({
                 modifiers: [
-                interact.modifiers.snap({
-                    targets: [
-                    interact.snappers.grid({ x: 30, y: 30 })
-                    ],
-                    range: Infinity,
-                    relativePoints: [ { x: 0, y: 0 } ]
-                }),
-                // interact.modifiers.restrict({
-                //     restriction: element.parentNode,
-                //     elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
-                //     endOnly: true
-                // })
+                    interact.modifiers.snap({
+                        targets: [
+                            interact.snappers.grid({ x: 40, y: 40 })
+                        ],
+                        range: Infinity,
+                        relativePoints: [ { x: 0, y: 0 } ]
+                    }),
+                    // interact.modifiers.restrict({
+                    //     restriction: element.parentNode,
+                    //     elementRect: { top: 0, left: 0, bottom: 1, right: 1 },
+                    //     endOnly: true
+                    // })
                 ],
-                inertia: true
+                inertia: false
             })
-            // .draggable({
-            //     inertia: false
-            // })
             .resizable({
                 edges: {left: true, right: true, bottom: true, top: true},
                 preserveAspectRatio: false,
-                inertia: false
+                inertia: false,
+                // modifiers: [
+                //     interact.modifiers.snap({
+                //         targets: [
+                //             interact.snappers.grid({ x: 40, y: 40 })
+                //         ],
+                //         range: Infinity,
+                //         relativePoints: [ { x: 0, y: 0 } ]
+                //     }),
+                // ],
             })
             .on('dragmove', event => {
                 x += event.dx
@@ -64,7 +70,7 @@ export function useDropzoneInteractJS(
                     y
                 })
                 let draggableElement = event.target;
-                draggableElement.textContent = `dragmove: x:${x} y:${y}`;
+                draggableElement.textContent = `dragmove: x:${x} y:${y+10}`;
 
             })
             .on('resizemove', event => {
